@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Dice Roller</title>
+<style>
+  body {
+      display: flex;
+          flex-direction: column;
+              align-items: center;
+                  justify-content: center;
+                      height: 100vh;
+                          background: #1e1e1e;
+                              font-family: Arial, sans-serif;
+                                  color: white;
+                                    }
+                                      .scene {
+                                          width: 120px;
+                                              height: 120px;
+                                                  perspective: 600px;
+                                                    }
+                                                      .dice {
+                                                          width: 100%;
+                                                              height: 100%;
+                                                                  position: relative;
+                                                                      transform-style: preserve-3d;
+                                                                          transition: transform 1s ease-out;
+                                                                            }
+                                                                              .face {
+                                                                                  position: absolute;
+                                                                                      width: 120px;
+                                                                                          height: 120px;
+                                                                                              background: white;
+                                                                                                  border: 2px solid #ccc;
+                                                                                                      display: flex;
+                                                                                                          align-items: center;
+                                                                                                              justify-content: center;
+                                                                                                                  font-size: 50px;
+                                                                                                                      font-weight: bold;
+                                                                                                                          color: black;
+                                                                                                                            }
+                                                                                                                              .front  { transform: rotateY(0deg) translateZ(60px); }
+                                                                                                                                .back   { transform: rotateY(180deg) translateZ(60px); }
+                                                                                                                                  .right  { transform: rotateY(90deg) translateZ(60px); }
+                                                                                                                                    .left   { transform: rotateY(-90deg) translateZ(60px); }
+                                                                                                                                      .top    { transform: rotateX(90deg) translateZ(60px); }
+                                                                                                                                        .bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+                                                                                                                                          button {
+                                                                                                                                              margin-top: 20px;
+                                                                                                                                                  padding: 10px 20px;
+                                                                                                                                                      font-size: 18px;
+                                                                                                                                                          cursor: pointer;
+                                                                                                                                                              background: #ff9800;
+                                                                                                                                                                  color: white;
+                                                                                                                                                                      border: none;
+                                                                                                                                                                          border-radius: 8px;
+                                                                                                                                                                            }
+                                                                                                                                                                              button:hover {
+                                                                                                                                                                                  background: #e68a00;
+                                                                                                                                                                                    }
+                                                                                                                                                                                    </style>
+                                                                                                                                                                                    </head>
+                                                                                                                                                                                    <body>
+
+                                                                                                                                                                                    <div class="scene">
+                                                                                                                                                                                      <div class="dice" id="dice">
+                                                                                                                                                                                          <div class="face front">1</div>
+                                                                                                                                                                                              <div class="face back">6</div>
+                                                                                                                                                                                                  <div class="face right">3</div>
+                                                                                                                                                                                                      <div class="face left">4</div>
+                                                                                                                                                                                                          <div class="face top">5</div>
+                                                                                                                                                                                                              <div class="face bottom">2</div>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <button onclick="rollDice()">Roll Dice</button>
+
+                                                                                                                                                                                                                <script>
+                                                                                                                                                                                                                function rollDice() {
+                                                                                                                                                                                                                  const dice = document.getElementById('dice');
+
+                                                                                                                                                                                                                    // Random rotations (multiple of 90 for realism)
+                                                                                                                                                                                                                      const xRand = Math.floor(Math.random() * 4) * 90 + 360 * 3; // spin several times
+                                                                                                                                                                                                                        const yRand = Math.floor(Math.random() * 4) * 90 + 360 * 3;
+
+                                                                                                                                                                                                                          dice.style.transform = `rotateX(${xRand}deg) rotateY(${yRand}deg)`;
+                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                          </script>
+
+                                                                                                                                                                                                                          </body>
+                                                                                                                                                                                                                          </html>
